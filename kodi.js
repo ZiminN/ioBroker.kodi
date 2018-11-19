@@ -343,6 +343,7 @@ function connect(){
             GetNameVersion();
             GetPlayerId();
         	GetVolume();
+		GetStereoscopicMode();
             GetChannels();
             GetVideoLibrary();
             setTimeout(function (){
@@ -390,6 +391,18 @@ function GetVolume(){
             ErrProcessing(e);
         })
     }
+}
+
+function GetStereoscopicMode(){
+	if (connection){
+		connection.run('GUI.GetProperties',{'properties':['stereoscopicmode']}).then(function (res){
+			adapter.setState('StereoscopicMode', {val: res.stereoscopicmode.mode, ack: true});
+		}, function (e){
+			ErrProcessing(e);
+		}).catch(function (e) {
+			ErrProcessing(e);
+		})
+	}
 }
 
 function main(){
