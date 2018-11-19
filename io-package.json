@@ -548,6 +548,17 @@
             },
             "native": {}
         },
+	{
+            "_id": "SwitchPVR_N",
+            "type": "state",
+            "common": {
+                "name": "SwitchPVR_N",
+                "type": "integer",
+                "def": false,
+                "role": "media"
+            },
+            "native": {}
+        },
         {
             "_id": "next",
             "type": "state",
