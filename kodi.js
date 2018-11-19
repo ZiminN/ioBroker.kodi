@@ -356,12 +356,14 @@ function connect(){
 function connection_emit(){
     connection.notification('Player.OnPlay', function(res) {
         adapter.setState('state', {val: 'play', ack: true});
+	GetStereoscopicMode();
     });
     connection.notification('Player.OnPause', function(res) {
         adapter.setState('state', {val: 'pause', ack: true});
     });
     connection.notification('Player.OnStop', function(res) {
         adapter.setState('state', {val: 'stop', ack: true});
+	setTimeout (function () {GetStereoscopicMode();},1000);
     });
     connection.notification('Input.OnInputRequested', function(res) {
         //adapter.log.error('OnInputRequested: ' + JSON.stringify(res));
