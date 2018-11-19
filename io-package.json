@@ -537,6 +537,17 @@
             },
             "native": {}
         },
+	{
+            "_id": "StereoscopicMode",
+            "type": "state",
+            "common": {
+                "name": "StereoscopicMode",
+                "type": "string",
+                "def": false,
+                "role": "media"
+            },
+            "native": {}
+        },
         {
             "_id": "next",
             "type": "state",
