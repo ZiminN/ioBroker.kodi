@@ -784,7 +784,7 @@ function SwitchPVR(val, callback){
             val = val.toString().toLowerCase();
             var obj = JSON.parse(state.val);
             try {
-		    isNumeric(val)
+		    if (isNumeric(val))
 		    {
 			    callback({"item": {"channelid": obj.channels[val].channelid}});
 		    }
@@ -797,9 +797,9 @@ function SwitchPVR(val, callback){
 					    //adapter.log.debug('PVR.GetChannelsIPTV: '+item.channelid);
 					    callback({"item": {"channelid": item.channelid}});
 					    throw Break;
-				    }
-			    }
-			}
+				    };
+			    };
+			};
                 });
             } catch (e) {
                 if (e !== Break) throw e;
