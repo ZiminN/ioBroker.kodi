@@ -784,14 +784,20 @@ function SwitchPVR(val, callback){
             val = val.toString().toLowerCase();
             var obj = JSON.parse(state.val);
             try {
-                obj.channels.forEach(function (item, i, a){
-                    var channel = item.label.toString().toLowerCase();
-                    var pos = channel.indexOf(val);
-                    if (pos === 0){ //TODO
-                        //adapter.log.debug('PVR.GetChannelsIPTV: '+item.channelid);
-                        callback({"item": {"channelid": item.channelid}});
-                        throw Break;
-                    }
+		    isNumeric(val)
+		    {
+			    callback({"item": {"channelid": obj.channels[val].channelid}});
+		    }
+		    else
+		    {
+			    obj.channels.forEach(function (item, i, a){
+				    var channel = item.label.toString().toLowerCase();
+				    var pos = channel.indexOf(val);
+				    if (pos === 0){ //TODO
+					    //adapter.log.debug('PVR.GetChannelsIPTV: '+item.channelid);
+					    callback({"item": {"channelid": item.channelid}});
+					    throw Break;
+				    }
                 });
             } catch (e) {
                 if (e !== Break) throw e;
