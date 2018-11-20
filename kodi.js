@@ -798,6 +798,8 @@ function SwitchPVR(val, callback){
 					    callback({"item": {"channelid": item.channelid}});
 					    throw Break;
 				    }
+			    }
+			}
                 });
             } catch (e) {
                 if (e !== Break) throw e;
