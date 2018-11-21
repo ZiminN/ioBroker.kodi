@@ -786,7 +786,10 @@ function SwitchPVR(val, callback){
             try {
 		    if (isNumeric(val))
 		    {
-			    callback({"item": {"channelid": obj.channels[val].channelid}});
+			    if (val>0 && val<= obj.channels.length)
+			    {
+			    	callback({"item": {"channelid": obj.channels[val-1].channelid}});
+			    };
 		    }
 		    else
 		    {
@@ -796,11 +799,10 @@ function SwitchPVR(val, callback){
 				    if (pos === 0){ //TODO
 					    //adapter.log.debug('PVR.GetChannelsIPTV: '+item.channelid);
 					    callback({"item": {"channelid": item.channelid}});
-					    throw Break;
 				    };
-			    };
-			};
-                });
+			    });
+		    };
+		    throw Break;
             } catch (e) {
                 if (e !== Break) throw e;
             }
