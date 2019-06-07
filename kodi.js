@@ -356,7 +356,7 @@ function connect(){
 function connection_emit(){
     connection.notification('Player.OnPlay', function(res) {
         adapter.setState('state', {val: 'play', ack: true});
-	setTimeout (function () {GetStereoscopicMode();},1000);
+	//setTimeout (function () {GetStereoscopicMode();},1000);
     });
     connection.notification('Player.OnPause', function(res) {
         adapter.setState('state', {val: 'pause', ack: true});
