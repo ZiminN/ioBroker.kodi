@@ -694,7 +694,7 @@ function GetPlayerProperties(){
                         });
                     }, 1000);
                 } else {
-                    adapter.setState('StereoscopicMode', {val: res[3].stereoscopicmode, ack: true});
+                    adapter.setState('StereoscopicMode', {val: res[3].stereoscopicmode.mode, ack: true});
                 }
 				adapter.setState('partymode', {val: res[0].partymode, ack: true});
         }, function (e){
