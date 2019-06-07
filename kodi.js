@@ -629,6 +629,7 @@ function GetChannels(){
         });
     }
 }
+
 function GetPlayerProperties(){
     if (connection && player_id !== undefined && player_id !== null){
         var batch = connection.batch();
@@ -638,8 +639,9 @@ function GetPlayerProperties(){
         });
         var InfoLabels = batch.XBMC.GetInfoLabels({"labels": ["MusicPlayer.Codec", "MusicPlayer.SampleRate", "MusicPlayer.BitRate"]});
         var CurrentPlay = batch.Player.GetItem({"playerid": player_id});
+		var Stereoscopic_Mode = batch.GUI.GetProperties({"properties":["stereoscopicmode"]});
         batch.send();
-        Promise.all([Properties, InfoLabels, CurrentPlay]).then(function (res){
+        Promise.all([Properties, InfoLabels, CurrentPlay, Stereoscopic_Mode]).then(function (res){
                 //TODO сохранять только изменения
                 //pre = res[0];
                 adapter.log.debug('Response GetPlayerProperties ' + JSON.stringify(res));
@@ -692,9 +694,9 @@ function GetPlayerProperties(){
                         });
                     }, 1000);
                 } else {
-                    adapter.setState('currentplay', {val: res[2].item.label, ack: true});
+                    adapter.setState('StereoscopicMode', {val: res[3].stereoscopicmode, ack: true});
                 }
-
+				adapter.setState('partymode', {val: res[0].partymode, ack: true});
         }, function (e){
             ErrProcessing(e);
         }).catch(function (e){
